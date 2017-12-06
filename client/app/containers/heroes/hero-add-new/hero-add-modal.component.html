@@ -1,0 +1,37 @@
+<div class="modal fade" id="addHeroModal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Create new Hero</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form class="form" role="form" [formGroup]="heroForm" (ngSubmit)="createHero()">
+					<div class="form-group" [class.has-success]="name.valid" [class.has-danger]="!name.valid">
+						<label for="name" class="form-control-label">Name</label>
+						<input type="text" class="form-control rounded-0" [class.is-valid]="name.valid" [class.is-invalid]="name.invalid" name="name" formControlName="name">
+					</div>
+					<div class="form-group">
+						<label for="universe">Universe</label>
+						<select class="form-control rounded-0" formControlName="universe">
+							<option *ngFor="let universe of universes" [value]="universe.value">{{ universe.name }}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="universe">Image URL</label>
+						<input type="text" class="form-control rounded-0 " formControlName="img">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="form-control-label">Story:</label>
+						<textarea class="form-control" name="story" formControlName="story"></textarea>
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-success float-right" type="submit" [disabled]="!heroForm.valid">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

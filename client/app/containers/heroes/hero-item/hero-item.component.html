@@ -1,0 +1,20 @@
+<div class="col">
+	<div class="card">
+		<div data-toggle="modal" data-target="#detail">
+			<a class="img-card">
+			<img #img [src]="hero.img" (error)="useDefaultImage($event)"/>
+		</a>
+			<br/>
+			<div class="card-content">
+				<h4 class="card-title">
+                        <a> {{hero.name}} </a>
+                    </h4>
+				<div class=""> {{hero.universe}} </div>
+			</div>
+		</div>
+		<div class="card-read-more">
+			<a class="col btn btn-link btn-block" (click)="deleteHero()"> Delete </a>
+		</div>
+	</div>
+</div>
+<app-hero-detail [hero]="hero" (onAfterUpdateHeroSuccessfully)="onAfterUpdateHeroSuccessfully($event)"></app-hero-detail>
