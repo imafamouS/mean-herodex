@@ -3,11 +3,12 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-
 import { UserService } from '../../../services/user.service';
+
 import { UserModel, JsonResponse } from '../../../models/index';
 
-declare let $:any;
+declare let $: any;
+
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -26,7 +27,7 @@ export class RegisterFormComponent implements OnInit {
   constructor(private userService: UserService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
-    private router: Router) { 
+    private router: Router) {
   }
 
   ngOnInit() {

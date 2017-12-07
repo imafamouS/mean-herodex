@@ -1,16 +1,17 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-a, a:visited {
+a,
+a:visited {
   display: block;
   text-decoration: inherit;
   color: inherit;
 }
-
-
 
 .container {
   padding: 0.5em 1em 1em;
@@ -18,23 +19,29 @@ a, a:visited {
   margin: 0 auto;
   overflow: hidden;
 }
+
 .container .blog-posts .featured {
   width: 100% !important;
   height: 250px !important;
   margin: 0.5em 0 1em 0 !important;
 }
+
 .container .blog-posts .featured .image {
   height: 250px !important;
 }
+
 .container .blog-posts .featured .content {
   height: 250px !important;
 }
+
 .container .blog-posts .row {
   display: flex;
 }
+
 .container .blog-posts .row .post:last-child {
   margin-right: 0 !important;
 }
+
 .container .blog-posts .post {
   flex: 1;
   overflow: hidden;
@@ -46,15 +53,19 @@ a, a:visited {
   margin-right: 1em;
   margin-bottom: 1em;
 }
+
 .container .blog-posts .post:hover {
   -moz-box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
 }
+
 .container .blog-posts .post:hover .image {
   opacity: 0.8;
 }
-.container .blog-posts .post .image, .container .blog-posts .post .content {
+
+.container .blog-posts .post .image,
+.container .blog-posts .post .content {
   display: inline-block;
   position: relative;
   -moz-transition: all 500ms ease;
@@ -62,6 +73,7 @@ a, a:visited {
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
+
 .container .blog-posts .post .image {
   float: left;
   width: 50%;
@@ -69,6 +81,7 @@ a, a:visited {
   background-size: cover;
   background-position: center center;
 }
+
 .container .blog-posts .post .image .time {
   background: rgba(255, 255, 255, 0.5);
   width: 50px;
@@ -76,12 +89,15 @@ a, a:visited {
   padding: 0.5em 0;
   color: #444;
 }
+
 .container .blog-posts .post .image .time .date {
   font-weight: bolder;
 }
+
 .container .blog-posts .post .image .time .month {
   font-size: 0.7rem;
 }
+
 .container .blog-posts .post .content {
   padding: 0.5em 1em;
   width: 50%;
@@ -90,6 +106,7 @@ a, a:visited {
   box-shadow: -2px 0 2px -1px rgba(0, 0, 0, 0.1);
   height: 200px;
 }
+
 .container .blog-posts .post .content:before {
   content: '';
   position: absolute;
@@ -106,6 +123,7 @@ a, a:visited {
   -webkit-box-shadow: -1px 0 2px -1px rgba(0, 0, 0, 0.1);
   box-shadow: -1px 0 2px -1px rgba(0, 0, 0, 0.1);
 }
+
 .container .blog-posts .post .content h1 {
   font-weight: 600;
   line-height: 2;
@@ -113,6 +131,7 @@ a, a:visited {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .container .blog-posts .post .content p {
   font-weight: 300;
   font-size: 0.7rem;
@@ -120,6 +139,7 @@ a, a:visited {
   margin-bottom: 0.5em;
   font-family: 'Merriweather', sans-serif;
 }
+
 .container .blog-posts .post .content .meta .icon-comment {
   font-size: 0.7em;
   line-height: 2;
@@ -145,6 +165,7 @@ img {
     margin: 0;
   }
 }
+
 @media screen and (max-width: 600px) {
   .content {
     width: 70% !important;
@@ -159,7 +180,10 @@ img {
     white-space: normal;
   }
 }
+
+
 /* clearfix */
+
 .cf:before,
 .cf:after {
   content: " ";

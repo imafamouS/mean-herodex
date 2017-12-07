@@ -1,14 +1,12 @@
-const Logger = require('../logger');
-const TAG = "UserController ";
+const TAG = 'UserController ';
 
-const DatabaseUtils = require('../commons/database-utils');
-const TextUtils = require('../commons/text-utils');
-const HandlerResponse = require('../commons/response/handler-response');
+const Logger = require('../logger');
 
 const UserModel = require('../models/user.model');
+
 const BaseController = require('./base.controller')(UserModel);
 
-const UserHandler = require('./handlers/user-handler');
+const UserControllerUtils = require('./utils/user-controller-utils');
 
 const UserController = {};
 
@@ -22,68 +20,20 @@ UserController.delete = BaseController.delete;
 
 module.exports = UserController;
 
-function login(req, res) {
-  Logger.info(TAG + 'Login...');
-  let query = { username: req.body.username };
+function login( req, res ) {
+        Logger.info(TAG + 'Login...');
 
-  if (!DatabaseUtils.isOpen()) {
-    HandlerResponse.connectDatabase(res);
-  }
-
-  UserModel.findOne(query, (err, user) => {
-    if (err) {
-      HandlerResponse.error(res, err);
-    }
-    if (!user) {
-      UserHandler.doesNotExist(res);
-    } else {
-      let password = req.body.password;
-      user.comparePassword(password, function(error, isMatch) {
-        if (!isMatch) {
-          UserHandler.wrongPassword(res);
-        } else {
-          UserHandler.loginSuccessful(res, user);
-        }
-      });
-    }
-  });
+        UserControllerUtils.login(req, res);
 }
 
-function register(req, res) {
-  Logger.info(TAG + 'Register...');
+function register( req, res ) {
+        Logger.info(TAG + 'Register...');
 
-  let user = new UserModel(req.body);
-  if (!DatabaseUtils.isOpen()) {
-    HandlerResponse.connectDatabase(res);
-  }
-
-  user.save()
-    .then(data => { HandlerResponse.success(res, { message: 'User created successfully' }); })
-    .catch(err => {
-      if (err.code == 11000) {
-        UserHandler.userAlreadyExist(res);
-      } else {
-        HandlerResponse.error(res, err);
-      }
-    });
+        UserControllerUtils.register(req, res);
 }
 
-function update(req, res) {
-  Logger.info(TAG + 'Update...');
+function update( req, res ) {
+        Logger.info(TAG + 'Update...');
 
-  delete req.body.username;
-  let password;
-  TextUtils.hash(req.body.password)
-    .then(hash => {
-      password = hash;
-      let query = { _id: req.params.id };
-      let update = { "$set": { "password": password, "role": req.body.role } };
-      UserModel.update(query, update, function(err, data) {
-        if (err) {
-          HandlerResponse.error(res, err);
-        } else {
-          HandlerResponse.success(res, {message: 'User updated successfully'});
-        }
-      });
-    }).catch(err => HandlerResponse.error(res, err));
+        UserControllerUtils.update(req, res);
 }

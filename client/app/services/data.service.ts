@@ -19,20 +19,20 @@ export class DataService {
 
 	public get(url: string, header?: HttpHeaders) {
 		let options = header || this.headerBuilder.getDefaultHeader();
-		return this.http.get(url, {headers : options})
+		return this.http.get(url, { headers: options })
 			.catch(error => HandlerError.handler(error));
 	}
 
 	public post(url: string, body?: any, header?: HttpHeaders) {
 		let options = header || this.headerBuilder.getDefaultHeader();
-		return this.http.post(url, body, {headers : options})
+		return this.http.post(url, body, { headers: options })
 			.catch(error => HandlerError.handler(error));
 	}
 
 	public put(url: string, body: any, header?: HttpHeaders) {
 		let options = header || this.headerBuilder.getDefaultHeader();
 		console.log(url);
-		return this.http.put(url, body, {headers : options})
+		return this.http.put(url, body, { headers: options })
 			.catch(error => HandlerError.handler(error));
 	}
 
@@ -40,7 +40,7 @@ export class DataService {
 		let options = header || this.headerBuilder.getDefaultHeader();
 		let _id = body;
 
-		return this.http.delete(url + '/' + _id, {headers : options})
+		return this.http.delete(url + '/' + _id, { headers: options })
 			.catch(error => HandlerError.handler(error));
 	}
 

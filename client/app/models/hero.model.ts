@@ -5,7 +5,7 @@ export class HeroModel {
 	img: string;
 	story: string;
 
-	constructor({id, name, universe, img, story}){
+	constructor({ id, name, universe, img, story }) {
 		this._id = id;
 		this.name = name;
 		this.universe = universe;

@@ -1,4 +1,4 @@
-const BASE_URL:string = 'http://localhost:8000/api';
+const BASE_URL: string = 'http://localhost:8000/api';
 
 export const API = {
 	auth: {

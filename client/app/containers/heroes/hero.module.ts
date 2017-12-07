@@ -4,17 +4,19 @@ import { HeroDashboardComponent } from './hero-dashboard/hero-dashboard.componen
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroItemComponent } from './hero-item/hero-item.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
-
-import { SharedModule } from '../../shared/shared.module';
 import { HeroAddModalComponent } from './hero-add-new/hero-add-modal.component';
 import { HeroUpdateComponent } from './hero-update/hero-update.component';
 
+import { SharedModule } from '../../shared/shared.module';
+
+import { LimitStringPipe } from '../../pipes/index';
+
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
   ],
   exports: [
-    HeroDashboardComponent
+    HeroDashboardComponent,
   ],
   declarations: [
     HeroDashboardComponent,
@@ -23,10 +25,11 @@ import { HeroUpdateComponent } from './hero-update/hero-update.component';
     HeroDetailComponent,
     HeroAddModalComponent,
     HeroAddModalComponent,
-    HeroUpdateComponent
+    HeroUpdateComponent,
+    LimitStringPipe
   ],
 
-  providers: []
+  providers: [LimitStringPipe]
 })
 
 export class HeroModule {

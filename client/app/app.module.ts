@@ -18,7 +18,7 @@ import { AppErrorHandler } from './commons/handler-global-error';
 
 import { AuthService, DataService, HeroService, UserService } from './services/index';
 
-import { LimitStringPipe, UpperFirstLetterPipe } from './pipes/index';
+import { UpperFirstLetterPipe } from './pipes/index';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -33,7 +33,6 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterFormComponent,
     RegisterModalComponent,
 
-    LimitStringPipe, 
     UpperFirstLetterPipe
   ],
   imports: [

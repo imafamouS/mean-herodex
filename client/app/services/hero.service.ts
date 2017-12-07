@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-
 import { API } from '../app.config';
 import { HeaderBuilder } from '../commons/header-request-builder';
 import { DataService } from './data.service';
@@ -13,6 +12,10 @@ export class HeroService {
 
 	constructor(private dataService: DataService) {
 
+	}
+	public searchHeroes(term: string) {
+		let options = this.headerBuilder.getHeaderWithToken();
+		return this.dataService.get(API.hero_url + '/search?name=' + term, options);
 	}
 
 	public getHeroes(offset?: number, limit?: number) {
@@ -42,7 +45,7 @@ export class HeroService {
 	public update(hero: HeroModel) {
 		let options = this.headerBuilder.getHeaderWithToken();
 
-		return this.dataService.update(API.hero_url +'/'+ hero._id, JSON.stringify(hero), options);
+		return this.dataService.update(API.hero_url + '/' + hero._id, JSON.stringify(hero), options);
 	}
 
 	public delete(hero: HeroModel) {

@@ -1,3 +1,5 @@
+const TAG = 'App ';
+
 const Express = require('express');
 const BodyParse = require('body-parser');
 const CookieParser = require('cookie-parser');
@@ -9,10 +11,11 @@ const Router = require('./routes/main.route');
 
 const App = Express();
 App.use((req, res, next) => {
-
 	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, charset, token');
+	res.setHeader('Access-Control-Allow-Methods',
+		'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers',
+		'X-Requested-With, Content-Type, charset, token');
 	res.setHeader('Access-Control-Allow-Credentials', true);
 	next();
 });
@@ -31,6 +34,7 @@ if (Config.env === 'production') {
 		res.sendFile(Path.join(__dirname, '../dist/public/index.html'));
 	});
 }
+
 App.use('/api', Router);
 
 App.set('port', Config.port);

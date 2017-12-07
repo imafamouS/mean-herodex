@@ -1,3 +1,5 @@
+const TAG = 'MainRouter ';
+
 const Express = require('express');
 
 const UserRouter = require('./user.route');

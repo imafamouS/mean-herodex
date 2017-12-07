@@ -38,23 +38,7 @@ export class AuthService implements OnInit {
 
 	public login(usernameAndPassword: UserModel) {
 		return this.userService.login(usernameAndPassword)
-			.map(res => {
-				if (res.status === 'success' && res.data) {
-					let token = res.data.token;
-					if (!token) {
-						Observable.throw(new Error());
-						return;
-					}
-					localStorage.setItem('token', token);
-
-					this.setCurrentUser(token);
-					this.updateStatusUser(this.currentUser);
-
-					this.isLoggedin = true;
-
-					return this.isLoggedin;
-				}
-			});
+			.map(res => { this.handlerLoginSuccessfully(res); });
 	}
 
 	public logout() {
@@ -66,6 +50,24 @@ export class AuthService implements OnInit {
 		});
 		localStorage.removeItem('token');
 		this.router.navigate(['/']);
+	}
+
+	private handlerLoginSuccessfully(res) {
+		if (res.status === 'success' && res.data) {
+			let token = res.data.token;
+			if (!token) {
+				Observable.throw(new Error());
+				return;
+			}
+			localStorage.setItem('token', token);
+
+			this.setCurrentUser(token);
+			this.updateStatusUser(this.currentUser);
+
+			this.isLoggedin = true;
+
+			return this.isLoggedin;
+		}
 	}
 
 	private setCurrentUser(token: string) {

@@ -1,14 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ToastrService } from 'ngx-toastr';
+import { DEFAULT_IMAGE_HERO } from '../../../app.config';
 
+import { ToastrService } from 'ngx-toastr';
 import { HeroService } from '../../../services/hero.service';
+
 import { HeroModel } from '../../../models/hero.model';
 
-
 declare let $: any;
+
 @Component({
 	selector: 'app-hero-update',
 	templateUrl: './hero-update.component.html',
@@ -17,6 +19,7 @@ declare let $: any;
 export class HeroUpdateComponent implements OnInit {
 	@Input('hero') hero;
 	@Output('onUpdateHeroSuccessfully') onUpdateHeroSuccessfully: EventEmitter<HeroModel> = new EventEmitter<HeroModel>();
+	@ViewChild('img') img: ElementRef;
 
 	heroForm: FormGroup;
 	name: FormControl;
@@ -35,6 +38,11 @@ export class HeroUpdateComponent implements OnInit {
 		this.initForm();
 	}
 
+	public onImgageError() {
+		let inputImg = this.heroForm.get('img').value;
+		this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
+	}
+
 	public updateHero() {
 		let heroModel: HeroModel = this.buildHeroModel();
 		if (!heroModel.name) {
@@ -43,23 +51,27 @@ export class HeroUpdateComponent implements OnInit {
 		}
 		this.heroService.update(heroModel)
 			.subscribe(
-			result => {
-				let isSuccess = result.status === 'success';
-
-				if (isSuccess) {
-					this.toast.success(`Updated hero successfully`);
-					$('#updateHeroModal').modal('toggle');
-
-					this.onUpdateHeroSuccessfully.emit(heroModel);
-				}
-			},
-			error => {
-				let message = 'Cannot update Hero! Please try later';
-
-				this.toast.error('', message);
-			});
+			result => { this.handlerUpdateHeroSuccessfully(result, heroModel) },
+			error => { this.handlerUpdateHeroFailure() });
 
 		this.heroForm.reset();
+	}
+
+	private handlerUpdateHeroSuccessfully(result, heroModel) {
+		let isSuccess = result.status === 'success';
+
+		if (isSuccess) {
+			this.toast.success(`Updated hero successfully`);
+			$('#updateHeroModal').modal('toggle');
+
+			this.onUpdateHeroSuccessfully.emit(heroModel);
+		}
+	}
+
+	private handlerUpdateHeroFailure() {
+		let message = 'Cannot update Hero! Please try later';
+
+		this.toast.error('', message);
 	}
 
 	private buildHeroModel() {

@@ -7,15 +7,15 @@ import { ToastrService } from 'ngx-toastr';
 import { HeroService } from '../../../services/hero.service';
 import { HeroModel } from '../../../models/hero.model';
 
+declare let $: any;
 
-declare let $:any;
 @Component({
 	selector: 'app-hero-add-modal',
 	templateUrl: './hero-add-modal.component.html',
 	styleUrls: ['./hero-add-modal.component.css']
 })
 export class HeroAddModalComponent implements OnInit {
-	@Output('onCreateHeroSuccessfully') onCreateHeroSuccessfully:EventEmitter<HeroModel> = new EventEmitter<HeroModel>();
+	@Output('onCreateHeroSuccessfully') onCreateHeroSuccessfully: EventEmitter<HeroModel> = new EventEmitter<HeroModel>();
 
 	heroForm: FormGroup;
 	name: FormControl;
@@ -42,23 +42,27 @@ export class HeroAddModalComponent implements OnInit {
 		}
 		this.heroService.create(heroModel)
 			.subscribe(
-			result => {
-				let id = result.data._id;
-				if (id) {
-					heroModel._id = id;
-					this.toast.success(`Created ${heroModel.name} hero successfully`);
-					$('#addHeroModal').modal('toggle');
-					
-					this.onCreateHeroSuccessfully.emit(heroModel);
-				}
-			},
-			error => {
-				let message = 'Cannot create new Hero! Please try later';
-				
-				this.toast.error('', message);
-			});
+			result => { this.handlerCreateHeroSuccessfully(result, heroModel); },
+			error => { this.handlerCreateHeroFailure(); });
 
 		this.heroForm.reset();
+	}
+
+	private handlerCreateHeroSuccessfully(result, heroModel) {
+		let id = result.data._id;
+		if (id) {
+			heroModel._id = id;
+			this.toast.success(`Created ${heroModel.name} hero successfully`);
+			$('#addHeroModal').modal('toggle');
+
+			this.onCreateHeroSuccessfully.emit(heroModel);
+		}
+	}
+
+	private handlerCreateHeroFailure() {
+		let message = 'Cannot create new Hero! Please try later';
+
+		this.toast.error('', message);
 	}
 
 	private buildHeroModel() {

@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { DEFAULT_IMAGE_HERO } from '../../../app.config';
 
+import { DEFAULT_IMAGE_HERO } from '../../../app.config';
 import { HeroService } from '../../../services/hero.service';
 import { ToastrService } from 'ngx-toastr';
 
 import { HeroModel } from '../../../models/index';
+
+declare let $: any;
 @Component({
 	selector: 'app-hero-item',
 	templateUrl: './hero-item.component.html',
@@ -20,10 +22,9 @@ export class HeroItemComponent implements OnInit {
 		private toast: ToastrService) { }
 
 	ngOnInit() {
-
 	}
 
-	deleteHero() {
+	public deleteHero() {
 		this.heroService.delete(this.hero)
 			.subscribe(
 			result => {
@@ -35,11 +36,17 @@ export class HeroItemComponent implements OnInit {
 			});
 	}
 
-	useDefaultImage(event) {
+	public useDefaultImage(event) {
 		this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
 	}
 
-	onAfterUpdateHeroSuccessfully(hero){
+	public onAfterUpdateHeroSuccessfully(hero) {
 		this.onNeedUpdateHero.emit(hero);
+	}
+
+	public openDetailModal() {
+		let idModal = "#detail_" + this.hero._id;
+		$(idModal).modal();
+
 	}
 }

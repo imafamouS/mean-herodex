@@ -1,4 +1,4 @@
-<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" [id]="id" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -8,9 +8,9 @@
 							<a>
 								<img #img class='image' [src]="hero.img" (error)="useDefaultImage($event)"/>
 								<div class='content' style="overflow-y: auto; color: black;">
-									<h1>{{hero.name}}</h1>
-									<p>{{hero.universe}}</p>
-									<p style="font-size:100%;">{{hero.story}}</p>
+									<h1>{{ hero.name }}</h1>
+									<p>{{ hero.universe }}</p>
+									<p style="font-size:100%;">{{ hero.story }}</p>
 								</div>
 							</a>
 						</div>

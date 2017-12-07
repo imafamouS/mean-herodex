@@ -12,16 +12,21 @@ export class HeroDetailComponent implements OnInit {
 	@Input('hero') hero;
 	@Output('onAfterUpdateHeroSuccessfully') onAfterUpdateHeroSuccessfully: EventEmitter<HeroModel> = new EventEmitter<HeroModel>();
 	@ViewChild('img') img: ElementRef;
+
+	id: string;
 	constructor() { }
 
 	ngOnInit() {
+		this.id = "detail" + '_' + this.hero._id;
 	}
 
 	public useDefaultImage(event) {
 		this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
 	}
 	public showModalUpdate() {
-		$("#detail").modal('toggle');
+
+		let idDetail = '#detail_' + this.hero._id;
+		$(idDetail).modal('toggle');
 		setTimeout(function() {
 			$("#updateHeroModal").modal();
 		}, 250);

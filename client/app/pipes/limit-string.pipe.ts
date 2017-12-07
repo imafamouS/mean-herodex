@@ -2,13 +2,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'limitString' })
 export class LimitStringPipe implements PipeTransform {
-	transform(value: string, limit:number) {
+	transform(value: string, limit: number) {
 		if (!value) {
 			return;
 		}
-		if(!limit){
+		if (!limit) {
 			limit = 5;
 		}
-		return value.slice(0,limit - 1) + "...";
+		if (value.length < limit) {
+			return value.slice(0, limit - 1);
+		}
+		return value.slice(0, limit - 1) + "...";
 	}
 }

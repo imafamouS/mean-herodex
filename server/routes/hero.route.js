@@ -1,18 +1,21 @@
+const TAG = 'HeroRouter ';
+
 const Express = require('express');
 
 const HeroController = require('../controllers/hero.controller');
-const Router = Express.Router();
 
-Router.route('/search')
+const HeroRouter = Express.Router();
+
+HeroRouter.route('/search')
 	.get(HeroController.search);
 
-Router.route('/')
+HeroRouter.route('/')
 	.get(HeroController.getHeroes)
 	.post(HeroController.create);
 
-Router.route('/:id')
+HeroRouter.route('/:id')
 	.get(HeroController.getById)
 	.put(HeroController.update)
 	.delete(HeroController.delete);
 
-module.exports = Router;
+module.exports = HeroRouter;

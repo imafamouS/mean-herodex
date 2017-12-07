@@ -1,11 +1,12 @@
+const TAG = 'DatabaseUtils ';
+
 const Mongoose = require('mongoose');
 
 const Logger = require('../logger');
-const TAG = "DatabaseUtils";
-
 const Config = require('../config');
 
 const DatabaseUtils = {};
+
 DatabaseUtils.isOpen = isOpen;
 DatabaseUtils.checkIfConnectionIsOpen = isConnectionOpen;
 

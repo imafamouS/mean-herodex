@@ -3,11 +3,11 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-
 import { AuthService } from '../../../services/auth.service';
+
 import { UserModel, JsonResponse } from '../../../models/index';
 
-declare let $:any;
+declare let $: any;
 @Component({
 	selector: 'app-login-form',
 	templateUrl: './login-form.component.html',
@@ -67,7 +67,7 @@ export class LoginFormComponent implements OnInit {
 			}
 			this.toast.error('', message.toString());
 		} else {
-			this.toast.error('','Oops! An error has occurred');
+			this.toast.error('', 'Oops! An error has occurred');
 		}
 	}
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-hero-dashboard',
@@ -8,13 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class HeroDashboardComponent implements OnInit {
 	newHero: any;
 
-	constructor() { }
+	constructor(private titleService: Title) { }
 
 	ngOnInit() {
+		this.titleService.setTitle('Dashboard');
 	}
 
-	onCreateHeroSuccessfully(heroModel) {
-		console.log('FROM DASHBOARD'+ JSON.stringify(heroModel));
+	public onCreateHeroSuccessfully(heroModel) {
 		this.newHero = heroModel;
 	}
 }
