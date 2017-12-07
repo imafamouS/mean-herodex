@@ -1,79 +1,41 @@
-<div class="modal fade"
-     id="updateHeroModal">
-    <div class="modal-dialog"
-         role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Update Hero</h5>
-                <button type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <label for="thumnailImage"
-                       class="form-control-label">Preview Image</label>
-                <img [src]="imgInput.value"
-                     class="img-thumbnail"
-                     (error)="onImgageError()"
-
-                     #img
-                     style="margin-bottom: 5px"
-                     id="thumnailImage">
-                <form class="form"
-                      role="form"
-                      [formGroup]="heroForm"
-                      (ngSubmit)="updateHero()">
-                    <div class="form-group"
-                         [class.has-success]="name.valid">
-                        <label for="name"
-                               class="form-control-label">Name</label>
-                        <input type="text"
-                               class="form-control rounded-0"
-                               [value]="hero.name"
-                               [class.is-valid]="name.valid"
-                               id="name"
-                               formControlName="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="universe">Universe</label>
-                        <select class="form-control rounded-0"
-                                id="universe"
-                                formControlName="universe">
-                            <option *ngFor="let universe of universes"
-                                    [value]="universe.value"
-                                    [selected]="universe.name == hero.universe">{{ universe.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image URL</label>
-                        <input type="url"
-                               class="form-control rounded-0 "
-                               id="image"
-                               [value]="hero.img"
-                               formControlName="img"
-                               #imgInput>
-                    </div>
-                    <div class="form-group">
-                        <label for="story"
-                               class="form-control-label">Story:</label>
-                        <textarea class="form-control"
-                                  id="story"
-                                  [value]="hero.story"
-                                  formControlName="story"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="button"
-                                class="btn btn-success float-right"
-                                type="submit"
-                                [disabled]="!heroForm.valid">Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="modal fade" [id]="id">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Hero</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="thumnailImage" class="form-control-label">Preview Image</label>
+        <img [src]="imgInput.value" class="img-thumbnail" (error)="onImgageError()" #img style="margin-bottom: 5px" id="thumnailImage">
+        <form class="form" role="form" [formGroup]="heroForm" (ngSubmit)="updateHero()">
+          <div class="form-group" [class.has-success]="name.valid">
+            <label for="name" class="form-control-label">Name</label>
+            <input type="text" class="form-control rounded-0" [value]="hero.name" [class.is-valid]="name.valid" id="name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="universe">Universe</label>
+            <select class="form-control rounded-0" id="universe" formControlName="universe">
+              <option *ngFor="let universe of universes" [value]="universe.value" [selected]="universe.name == hero.universe">{{ universe.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="image">Image URL</label>
+            <input type="url" class="form-control rounded-0 " id="image" [value]="hero.img" formControlName="img" #imgInput>
+          </div>
+          <div class="form-group">
+            <label for="story" class="form-control-label">Story:</label>
+            <textarea class="form-control" id="story" [value]="hero.story" formControlName="story"></textarea>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-success float-right" type="submit" [disabled]="!heroForm.valid">Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

@@ -15,10 +15,8 @@
             </div>
         </div>
         <div class="card-read-more">
-            <a class="col btn btn-link btn-block"
-               (click)="deleteHero()"> Delete </a>
+            <a class="col btn btn-link btn-block" (click)="deleteHero()"> Delete </a>
         </div>
     </div>
 </div>
-<app-hero-detail [hero]="hero"
-                 (onAfterUpdateHeroSuccessfully)="onAfterUpdateHeroSuccessfully($event)"></app-hero-detail>
+<app-hero-detail [hero]="hero" (onAfterUpdateHeroSuccessfully)="onAfterUpdateHeroSuccessfully($event)"></app-hero-detail>

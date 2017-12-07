@@ -29,7 +29,11 @@ function getAll(model, req, res) {
                           });
                  })
                  .catch(err => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 
@@ -49,7 +53,11 @@ function getById(model, req, res) {
                           });
                  })
                  .catch(err => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 
@@ -62,7 +70,11 @@ function count(model, req, res) {
              HandlerResponse.success(res, {count: data});
          })
          .catch(err => {
-             HandlerResponse.error(res, err);
+             if (err.name === 'JsonWebTokenError') {
+                 HandlerResponse.unauthorized(res);
+             } else {
+                 HandlerResponse.error(res, err);
+             }
          });
 }
 
@@ -82,7 +94,11 @@ function create(model, req, res) {
                         });
                  })
                  .catch(err => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 
@@ -104,7 +120,11 @@ function update(model, req, res) {
                           });
                  })
                  .catch(err => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 
@@ -125,7 +145,11 @@ function _delete(model, req, res) {
                           });
                  })
                  .catch(err => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 

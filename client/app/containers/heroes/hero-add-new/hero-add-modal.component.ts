@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 
 import { HeroService } from '../../../services/hero.service';
 import { HeroModel } from '../../../models/hero.model';
+
+import { DEFAULT_IMAGE_HERO } from '../../../app.config';
 
 declare let $: any;
 
@@ -16,6 +18,7 @@ declare let $: any;
 })
 export class HeroAddModalComponent implements OnInit {
     @Output('onCreateHeroSuccessfully') onCreateHeroSuccessfully: EventEmitter<HeroModel> = new EventEmitter<HeroModel>();
+    @ViewChild('imgAdd') img: ElementRef;
 
     heroForm: FormGroup;
     name: FormControl;
@@ -33,6 +36,12 @@ export class HeroAddModalComponent implements OnInit {
 
     ngOnInit() {
         this.initForm();
+    }
+
+
+    public onImgageError() {
+        let inputImg = this.heroForm.get('img').value;
+        this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
     }
 
     public createHero() {

@@ -38,7 +38,7 @@ export class AuthService implements OnInit {
     public login(usernameAndPassword: UserModel) {
         return this.userService.login(usernameAndPassword)
                    .map(res => {
-                       this.handlerLoginSuccessfully(res);
+                       return this.handlerLoginSuccessfully(res);
                    });
     }
 

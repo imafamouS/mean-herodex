@@ -1,10 +1,10 @@
 const TAG = 'HeroControllerUtils ';
 
 const Logger = require('../../logger');
-const Config = require('../../config');
 
 const VerifyRequest = require('../../commons/verify-request');
 const DatabaseUtils = require('../../commons/database-utils');
+const HandlerResponse = require('../../commons/response/handler-response');
 
 const HeroModel = require('../../models/hero.model');
 
@@ -17,7 +17,7 @@ HeroControllerUtils.createHero = createHero;
 
 module.exports = HeroControllerUtils;
 
-function getDataByAction(action) {
+function getDataByAction(action, req, res) {
     Logger.info(TAG + action);
     
     if (!DatabaseUtils.isOpen()) {
@@ -31,7 +31,11 @@ function getDataByAction(action) {
                      getHeroWithQuery(req, res, query);
                  })
                  .catch((err) => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 
@@ -57,7 +61,11 @@ function createHero(req, res) {
                         });
                  })
                  .catch(err => {
-                     HandlerResponse.unauthorized(res);
+                     if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                     } else {
+                         HandlerResponse.error(res, err);
+                     }
                  });
 }
 
@@ -71,7 +79,7 @@ function queryBuilder(action, req, user) {
         case 'GET_HERO':
             query = buildQueryForGetHero(user);
             break;
-        case 'SERACH':
+        case 'SEARCH':
             query = buildQueryForSearchHero(req, user);
             break;
         default:
@@ -82,7 +90,7 @@ function queryBuilder(action, req, user) {
 }
 
 function buildQueryForGetHero(user) {
-    return {user_id: user.user._id};
+    return {user_id: user._id};
 }
 
 function buildQueryForSearchHero(req, user) {
@@ -92,10 +100,10 @@ function buildQueryForSearchHero(req, user) {
     
     if (name.length > 0) {
         query = {
-            user_id: user.user._id, name: {$regex: '.*' + name + '.*'},
+            user_id: user._id, name: {$regex: '.*' + name + '.*'},
         };
     } else {
-        query = {user_id: user.user._id};
+        query = {user_id: user._id};
     }
     
     return query;
@@ -103,13 +111,13 @@ function buildQueryForSearchHero(req, user) {
 
 function getHeroWithQuery(req, res, query) {
     if (shouldGetHeroByOffet(req)) {
-        getHeroByOffet(req, res, query);
+        getHeroByOffset(req, res, query);
     } else {
         getAllHero(req, res, query);
     }
 }
 
-function getHeroByOffet(req, res, query) {
+function getHeroByOffset(req, res, query) {
     Logger.info('Get Heroes BY OFFSET');
     
     let pageOption = {

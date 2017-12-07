@@ -82,7 +82,7 @@ export class HeroListComponent implements OnInit, OnChanges {
             this.loading = false;
 
             this.heroes = result.data.heroes;
-        }, 300);
+        }, 200);
     }
 
     private handlerGetHeroFailure() {

@@ -28,47 +28,69 @@ function handlerSuccess(res, data) {
 }
 
 function handlerError(res, err) {
-    Logger.info(TAG + 'Handler Error');
+    Logger.info(TAG + 'Handler Error:' + err.name);
+    let errorList = [];
     
-    if (err.name === 'ValidationError' || err.name === 'CastError') {
-        Logger.info(TAG + err.name);
-        
-        let errorList = [];
-        if (err.name === 'ValidationError') {
-            for (let field in err.errors) {
-                let message = `{"${field}": "${err.errors[field].message}"}`;
-                
-                let errorModel = JSON.parse(message);
-                errorList.push(errorModel);
-            }
-        } else if (err.name === 'CastError') {
-            let errorModel = new ErrorModel({
-                code: ErrorMessage.CANNOT_CAST_OBJECTID,
-                message: ErrorMessage[ErrorMessage.CANNOT_CAST_OBJECTID],
-            });
-            errorList.push(errorModel);
-        }
-        
-        let response = new ResponseModel({
-            code: 404,
-            status: 'failure',
-            message: ErrorMessage[ErrorMessage.AN_ERROR_HAS_OCCURRED],
-            errors: errorList,
-        });
-        
-        res.status(404)
-           .json(response);
-    } else {
-        let response = new ResponseModel({
-            code: 404,
-            status: 'failure',
-            message: ErrorMessage[ErrorMessage.AN_ERROR_HAS_OCCURRED],
-            errors: [err],
-        });
-        
-        res.status(404)
-           .json(response);
+    switch (err.name) {
+        case 'ValidationError':
+            errorList = buildErrorListFromValidationError(err);
+            break;
+        case 'CastError':
+            errorList = buildErrorListFromCastError(err);
+            break;
+        case 'TypeError':
+            errorList = buildErrorListFromTypeError(err);
+            break;
+        default:
+            erorrList = [err];
+            break;
     }
+    let response = new ResponseModel({
+        code: 404,
+        status: 'failure',
+        message: ErrorMessage[ErrorMessage.AN_ERROR_HAS_OCCURRED],
+        errors: errorList,
+    });
+    
+    res.status(404)
+       .json(response);
+}
+
+function buildErrorListFromValidationError(err) {
+    let errorList = [];
+    
+    for (let field in err.errors) {
+        let message = `{"${field}": "${err.errors[field].message}"}`;
+        
+        let errorModel = JSON.parse(message);
+        errorList.push(errorModel);
+    }
+    
+    return errorList;
+}
+
+function buildErrorListFromCastError(err) {
+    let errorList = [];
+    
+    let errorModel = new ErrorModel({
+        code: ErrorMessage.CANNOT_CAST_OBJECTID,
+        message: ErrorMessage[ErrorMessage.CANNOT_CAST_OBJECTID],
+    });
+    errorList.push(errorModel);
+    
+    return errorList;
+    
+}
+
+function buildErrorListFromTypeError() {
+    let errorList = [];
+    let errorModel = new ErrorModel({
+        code: ErrorMessage.TYPE_ERROR_HAS_OCCURRED,
+        message: ErrorMessage[ErrorMessage.TYPE_ERROR_HAS_OCCURRED],
+    });
+    errorList.push(errorModel);
+    
+    return errorList;
 }
 
 function handlerUnauthorized(res) {

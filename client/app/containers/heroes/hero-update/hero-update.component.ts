@@ -31,6 +31,7 @@ export class HeroUpdateComponent implements OnInit {
 
     heroForm: FormGroup;
     name: FormControl;
+    id: string;
 
     universes = [
         {value: 1, name: 'DC Comics'},
@@ -44,6 +45,7 @@ export class HeroUpdateComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.id = "updateHeroModal_" + this.hero._id;
         this.initForm();
     }
 

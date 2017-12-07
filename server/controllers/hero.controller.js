@@ -24,17 +24,17 @@ module.exports = HeroController;
 function getHeroes(req, res) {
     Logger.info(TAG + 'Get Heroes...');
     
-    HeroControllerUtils.getDataByAction(HeroControllerUtils.GET_HERO);
+    HeroControllerUtils.getDataByAction(HeroControllerUtils.GET_HERO, req, res);
 }
 
 function search(req, res) {
     Logger.info(TAG + 'Search Heroes...');
     
-    HeroControllerUtils.getDataByAction(HeroControllerUtils.SEARCH);
+    HeroControllerUtils.getDataByAction(HeroControllerUtils.SEARCH, req, res);
 }
 
 function createNewHero(req, res) {
     Logger.info(TAG + 'Search Heroes...');
     
-    HeroControllerUtils.crateHero(req, res);
+    HeroControllerUtils.createHero(req, res);
 }

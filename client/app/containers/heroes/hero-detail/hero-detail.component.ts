@@ -37,12 +37,13 @@ export class HeroDetailComponent implements OnInit {
 
     public showModalUpdate() {
 
-        let idDetail = '#detail_' + this.hero._id;
-        $(idDetail)
-        .modal('toggle');
+        let idDetailModal = '#detail_' + this.hero._id;
+        let idUpdateModal = '#updateHeroModal_' + this.hero._id;
+
+        $(idDetailModal).modal('toggle');
         setTimeout(function () {
-            $("#updateHeroModal")
-            .modal();
+            console.log(idUpdateModal);
+            $(idUpdateModal).modal();
         }, 250);
     }
 

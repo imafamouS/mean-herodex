@@ -1,11 +1,8 @@
 <div class="container-fluid">
-    <app-hero-list [newHero]="newHero"></app-hero-list>
-    <div class="buttons">
-        <button class="btn btn-primary button-left btn-circle btn-xl"
-                data-toggle="modal"
-                data-target="#addHeroModal">+
-        </button>
-    </div>
+	<app-hero-list [newHero]="newHero"></app-hero-list>
+	<div class="buttons">
+		<button class="btn btn-primary button-left btn-circle btn-xl" data-toggle="modal" data-target="#addHeroModal">+
+		</button>
+	</div>
 </div>
-<app-hero-add-modal
-    (onCreateHeroSuccessfully)="onCreateHeroSuccessfully($event)"></app-hero-add-modal>
+<app-hero-add-modal (onCreateHeroSuccessfully)="onCreateHeroSuccessfully($event)"></app-hero-add-modal>

@@ -51,11 +51,11 @@ export class LoginFormComponent implements OnInit {
     }
 
     private handlerLoginSuccessfully(isLoggedIn) {
+        console.log(isLoggedIn);
         if (isLoggedIn) {
             this.router.navigate(['/']);
             this.toast.success('', 'Login Successful');
-            $('#loginModal')
-            .modal('toggle');
+            $('#loginModal').modal('toggle');
         } else {
             this.toast.error('', 'Wrong username or password');
         }

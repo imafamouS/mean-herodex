@@ -21,6 +21,7 @@ const ErrorMessage = {
     901: 'Oops! An error has occurred',
     902: 'Oops! Invalid access token',
     903: 'Cannot cast value to ObjectId',
+    904: 'TypeError has occurred',
     USERNAME_IS_REQUIRED: 100,
     PASSWORD_IS_REQUIRED: 101,
     USERNAME_IS_INVALID: 102,
@@ -37,6 +38,7 @@ const ErrorMessage = {
     AN_ERROR_HAS_OCCURRED: 901,
     INVALID_ACCESS_TOKEN: 902,
     CANNOT_CAST_OBJECTID: 903,
+    TYPE_ERROR_HAS_OCCURRED: 904,
 };
 
 module.exports = ErrorMessage;
