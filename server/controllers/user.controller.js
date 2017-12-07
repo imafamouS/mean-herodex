@@ -20,20 +20,20 @@ UserController.delete = BaseController.delete;
 
 module.exports = UserController;
 
-function login( req, res ) {
-        Logger.info(TAG + 'Login...');
-
-        UserControllerUtils.login(req, res);
+function login(req, res) {
+    Logger.info(TAG + 'Login...');
+    
+    UserControllerUtils.login(req, res);
 }
 
-function register( req, res ) {
-        Logger.info(TAG + 'Register...');
-
-        UserControllerUtils.register(req, res);
+function register(req, res) {
+    Logger.info(TAG + 'Register...');
+    
+    UserControllerUtils.register(req, res);
 }
 
-function update( req, res ) {
-        Logger.info(TAG + 'Update...');
-
-        UserControllerUtils.update(req, res);
+function update(req, res) {
+    Logger.info(TAG + 'Update...');
+    
+    UserControllerUtils.update(req, res);
 }

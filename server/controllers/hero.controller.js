@@ -21,20 +21,20 @@ HeroController.search = search;
 
 module.exports = HeroController;
 
-function getHeroes( req, res ) {
-        Logger.info(TAG + 'Get Heroes...');
-
-        HeroControllerUtils.getDataByAction(HeroUtils.GET_HERO);
+function getHeroes(req, res) {
+    Logger.info(TAG + 'Get Heroes...');
+    
+    HeroControllerUtils.getDataByAction(HeroControllerUtils.GET_HERO);
 }
 
-function search( req, res ) {
-        Logger.info(TAG + 'Search Heroes...');
-
-        HeroControllerUtils.getDataByAction(HeroUtils.SEARCH);
+function search(req, res) {
+    Logger.info(TAG + 'Search Heroes...');
+    
+    HeroControllerUtils.getDataByAction(HeroControllerUtils.SEARCH);
 }
 
-function createNewHero( req, res ) {
-        Logger.info(TAG + 'Search Heroes...');
-
-        HeroControllerUtils.crateHero(req, res);
+function createNewHero(req, res) {
+    Logger.info(TAG + 'Search Heroes...');
+    
+    HeroControllerUtils.crateHero(req, res);
 }

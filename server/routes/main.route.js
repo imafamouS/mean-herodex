@@ -9,7 +9,7 @@ const HeroRouter = require('./hero.route');
 const MainRouter = Express.Router();
 
 MainRouter.post('/heath-check', (req, res) => {
-	res.send({ message: 'OK' });
+    res.send({message: 'OK'});
 });
 
 MainRouter.use('/auth', AuthRouter);

@@ -7,11 +7,11 @@ const UserController = require('../controllers/user.controller');
 const UserRouter = Express.Router();
 
 UserRouter.route('/')
-	.get(UserController.count);
+          .get(UserController.count);
 
 UserRouter.route('/:id')
-	.get(UserController.getById)
-	.put(UserController.update)
-	.delete(UserController.delete);
+          .get(UserController.getById)
+          .put(UserController.update)
+          .delete(UserController.delete);
 
 module.exports = UserRouter;
