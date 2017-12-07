@@ -8,15 +8,15 @@ import { DataService } from './data.service';
 @Injectable()
 export class UserService {
 
-	constructor(private dataService: DataService) {
+    constructor(private dataService: DataService) {
 
-	}
+    }
 
-	public login(loginModel: UserModel) {
-		return this.dataService.post(API.auth.login, JSON.stringify(loginModel));
-	}
+    public login(loginModel: UserModel) {
+        return this.dataService.post(API.auth.login, JSON.stringify(loginModel));
+    }
 
-	public register(registerModel: UserModel) {
-		return this.dataService.post(API.auth.register, JSON.stringify(registerModel));
-	}
+    public register(registerModel: UserModel) {
+        return this.dataService.post(API.auth.register, JSON.stringify(registerModel));
+    }
 }

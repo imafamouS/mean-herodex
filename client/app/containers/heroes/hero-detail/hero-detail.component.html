@@ -1,27 +1,43 @@
-<div class="modal fade" [id]="id" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-body">
-				<div class='container'>
-					<div class='blog-posts'>
-						<div class='post featured'>
-							<a>
-								<img #img class='image' [src]="hero.img" (error)="useDefaultImage($event)"/>
-								<div class='content' style="overflow-y: auto; color: black;">
-									<h1>{{ hero.name }}</h1>
-									<p>{{ hero.universe }}</p>
-									<p style="font-size:100%;">{{ hero.story }}</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" (click)="showModalUpdate()">Update</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="modal fade"
+     [id]="id"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class='container'>
+                    <div class='blog-posts'>
+                        <div class='post featured'>
+                            <a>
+                                <img #img
+                                     class='image'
+                                     [src]="hero.img"
+                                     (error)="useDefaultImage($event)"/>
+                                <div class='content'
+                                     style="overflow-y: auto; color: black;">
+                                    <h1>{{ hero.name }}</h1>
+                                    <p>{{ hero.universe }}</p>
+                                    <p style="font-size:100%;">{{ hero.story }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-warning"
+                            (click)="showModalUpdate()">
+                        Update
+                    </button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<app-hero-update [hero]="hero" (onUpdateHeroSuccessfully)="updateHeroSuccessfully($event)"></app-hero-update>
+<app-hero-update [hero]="hero"
+                 (onUpdateHeroSuccessfully)="updateHeroSuccessfully($event)"></app-hero-update>

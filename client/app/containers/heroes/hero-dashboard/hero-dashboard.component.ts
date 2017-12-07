@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-	selector: 'app-hero-dashboard',
-	templateUrl: './hero-dashboard.component.html',
-	styleUrls: ['./hero-dashboard.component.css']
+    selector: 'app-hero-dashboard',
+    templateUrl: './hero-dashboard.component.html',
+    styleUrls: ['./hero-dashboard.component.css']
 })
 export class HeroDashboardComponent implements OnInit {
-	newHero: any;
+    newHero: any;
 
-	constructor(private titleService: Title) { }
+    constructor(private titleService: Title) {
+    }
 
-	ngOnInit() {
-		this.titleService.setTitle('Dashboard');
-	}
+    ngOnInit() {
+        this.titleService.setTitle('Dashboard');
+    }
 
-	public onCreateHeroSuccessfully(heroModel) {
-		this.newHero = heroModel;
-	}
+    public onCreateHeroSuccessfully(heroModel) {
+        this.newHero = heroModel;
+    }
 }

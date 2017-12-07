@@ -1,6 +1,5 @@
-
 export class AppError {
-	constructor(public error){
-		
-	}
+    constructor(public error) {
+
+    }
 }

@@ -8,50 +8,51 @@ import { HeroModel } from '../models/index';
 @Injectable()
 export class HeroService {
 
-	private headerBuilder: HeaderBuilder = new HeaderBuilder();
+    private headerBuilder: HeaderBuilder = new HeaderBuilder();
 
-	constructor(private dataService: DataService) {
+    constructor(private dataService: DataService) {
 
-	}
-	public searchHeroes(term: string) {
-		let options = this.headerBuilder.getHeaderWithToken();
-		return this.dataService.get(API.hero_url + '/search?name=' + term, options);
-	}
+    }
 
-	public getHeroes(offset?: number, limit?: number) {
-		let options = this.headerBuilder.getHeaderWithToken();
-		let url: string;
-		if (offset >= 0 && limit >= 0) {
-			url = `${API.hero_url}?offset=${offset}&limit=${limit}`;
-		} else {
-			url = API.hero_url;
-		}
-		return this.dataService.get(url, options);
-	}
+    public searchHeroes(term: string) {
+        let options = this.headerBuilder.getHeaderWithToken();
+        return this.dataService.get(API.hero_url + '/search?name=' + term, options);
+    }
 
-	public getDetailHero(hero) {
-		let options = this.headerBuilder.getHeaderWithToken();
-		let id = hero || hero._id;
+    public getHeroes(offset?: number, limit?: number) {
+        let options = this.headerBuilder.getHeaderWithToken();
+        let url: string;
+        if (offset >= 0 && limit >= 0) {
+            url = `${API.hero_url}?offset=${offset}&limit=${limit}`;
+        } else {
+            url = API.hero_url;
+        }
+        return this.dataService.get(url, options);
+    }
 
-		return this.dataService.get(API.hero_url + '/' + id, options);
-	}
+    public getDetailHero(hero) {
+        let options = this.headerBuilder.getHeaderWithToken();
+        let id = hero || hero._id;
 
-	public create(hero: HeroModel) {
-		let options = this.headerBuilder.getHeaderWithToken();
+        return this.dataService.get(API.hero_url + '/' + id, options);
+    }
 
-		return this.dataService.create(API.hero_url, JSON.stringify(hero), options);
-	}
+    public create(hero: HeroModel) {
+        let options = this.headerBuilder.getHeaderWithToken();
 
-	public update(hero: HeroModel) {
-		let options = this.headerBuilder.getHeaderWithToken();
+        return this.dataService.create(API.hero_url, JSON.stringify(hero), options);
+    }
 
-		return this.dataService.update(API.hero_url + '/' + hero._id, JSON.stringify(hero), options);
-	}
+    public update(hero: HeroModel) {
+        let options = this.headerBuilder.getHeaderWithToken();
 
-	public delete(hero: HeroModel) {
-		let options = this.headerBuilder.getHeaderWithToken();
-		let id = hero._id;
-		return this.dataService.delele(API.hero_url, id, options);
-	}
+        return this.dataService.update(API.hero_url + '/' + hero._id, JSON.stringify(hero), options);
+    }
 
-} 
+    public delete(hero: HeroModel) {
+        let options = this.headerBuilder.getHeaderWithToken();
+        let id = hero._id;
+        return this.dataService.delele(API.hero_url, id, options);
+    }
+
+}

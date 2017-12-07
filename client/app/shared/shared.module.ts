@@ -9,30 +9,30 @@ import { SearchComponent } from './search/search.component';
 import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-  ],
-  exports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    PaginationComponent,
-    SearchComponent,
-    LoadingComponent,
-  ],
-  declarations: [
-    PaginationComponent,
-    SearchComponent,
-    LoadingComponent,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+    ],
+    exports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        PaginationComponent,
+        SearchComponent,
+        LoadingComponent,
+    ],
+    declarations: [
+        PaginationComponent,
+        SearchComponent,
+        LoadingComponent,
+    ],
 
-  providers: []
+    providers: []
 })
 
 export class SharedModule {

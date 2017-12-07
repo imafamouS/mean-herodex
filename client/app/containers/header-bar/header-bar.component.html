@@ -1,30 +1,61 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" routerLink="#">Super Hero</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/hero/dashboard" routerLinkActive="active">Hero Dashboard</a>
-      </li>
-    </ul>
-    <div *ngIf="!authService.isLoggedin;">
-      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginModal" style="color: white">Login</button>
-      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#registerModal">Register</button>
+    <a class="navbar-brand"
+       routerLink="#">Super Hero</a>
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarColor01"
+            aria-controls="navbarColor01"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"
+         id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link"
+                   routerLink="/home"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}">Home <span
+                    class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   routerLink="/hero/dashboard"
+                   routerLinkActive="active">Hero
+                    Dashboard</a>
+            </li>
+        </ul>
+        <div *ngIf="!authService.isLoggedin;">
+            <button type="button"
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#loginModal"
+                    style="color: white">Login
+            </button>
+            <button type="button"
+                    class="btn btn-outline-success"
+                    data-toggle="modal"
+                    data-target="#registerModal">Register
+            </button>
+        </div>
+        <a class="dropdown"
+           *ngIf="authService.isLoggedin;">
+            <button type="button"
+                    class="btn btn-outline-success dropdown-toggle nav-link"
+                    data-toggle="dropdown">{{authService.currentUser.username }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link"
+                       routerLink="#">Profile</a></li>
+                <li class="dropdown-divider"></li>
+                <li><a class="nav-link"
+                       routerLink="#"
+                       (click)="logout()">Logout</a></li>
+            </ul>
+        </a>
     </div>
-    <a class="dropdown" *ngIf="authService.isLoggedin;">
-      <button type="button" class="btn btn-outline-success dropdown-toggle nav-link" data-toggle="dropdown">{{authService.currentUser.username }}</button>
-      <ul class="dropdown-menu">
-        <li><a class="nav-link" routerLink="#">Profile</a></li>
-        <li class="dropdown-divider"></li>
-        <li><a class="nav-link" routerLink="#" (click)="logout()">Logout</a></li>
-      </ul>
-    </a>
-  </div>
 </nav>
 <app-login-modal></app-login-modal>
 <app-register-modal></app-register-modal>

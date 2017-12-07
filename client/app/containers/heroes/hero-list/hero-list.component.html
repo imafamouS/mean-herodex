@@ -1,10 +1,15 @@
 <app-search (onSearch)="onSearch($event)"></app-search>
 <div class="container-fluid">
-	<app-loading [loading]="loading"></app-loading>
-	<div class="row">
-		<div *ngFor="let hero of heroes">
-			<app-hero-item [hero]="hero" (onDeleteHeroSuccessfully)="onDeleteHeroSuccessfully($event)" (onNeedUpdateHero)="onNeedUpdateHero($event)"></app-hero-item>
-		</div>
-	</div>
+    <app-loading [loading]="loading"></app-loading>
+    <div class="row">
+        <div *ngFor="let hero of heroes">
+            <app-hero-item [hero]="hero"
+                           (onDeleteHeroSuccessfully)="onDeleteHeroSuccessfully($event)"
+                           (onNeedUpdateHero)="onNeedUpdateHero($event)"></app-hero-item>
+        </div>
+    </div>
 </div>
-<app-pagination [offset]="paginationConfig.offset" [limit]="paginationConfig.limit" [size]="paginationConfig.count" (pageChange)="onPageChange($event)"></app-pagination>
+<app-pagination [offset]="paginationConfig.offset"
+                [limit]="paginationConfig.limit"
+                [size]="paginationConfig.count"
+                (pageChange)="onPageChange($event)"></app-pagination>

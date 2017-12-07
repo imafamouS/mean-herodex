@@ -1,8 +1,8 @@
-import { ErrorHandler} from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
 export class AppErrorHandler implements ErrorHandler {
-	
-	handleError(error) {
-		console.log(error.message||error);
-	}
+
+    handleError(error) {
+        console.log(error.message || error);
+    }
 }

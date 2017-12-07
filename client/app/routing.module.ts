@@ -6,18 +6,18 @@ import { HeroDashboardComponent } from './containers/heroes/hero-dashboard/hero-
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-	{ path: 'home', component: HomeComponent },
-	{ path: 'hero/dashboard', component: HeroDashboardComponent, canActivate: [AuthGuard] },
-	{ path: '**', redirectTo: 'home' }
-	//{ path: '**', redirectTo: '/404' }
+    {path: 'home', component: HomeComponent},
+    {path: 'hero/dashboard', component: HeroDashboardComponent, canActivate: [AuthGuard]},
+    {path: '**', redirectTo: 'home'}
+    //{ path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
-	declarations: [],
-	imports: [RouterModule.forRoot(routes)],
-	providers: [AuthGuard],
-	bootstrap: [],
-	exports: [RouterModule]
+    declarations: [],
+    imports: [RouterModule.forRoot(routes)],
+    providers: [AuthGuard],
+    bootstrap: [],
+    exports: [RouterModule]
 })
 
 export class RoutingModule {

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderBarComponent } from './containers/header-bar/header-bar.component';
@@ -23,34 +23,35 @@ import { UpperFirstLetterPipe } from './pipes/index';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderBarComponent,
-    FooterBarComponent,
-    HomeComponent,
-    LoginFormComponent,
-    LoginModalComponent,
-    RegisterFormComponent,
-    RegisterModalComponent,
+    declarations: [
+        AppComponent,
+        HeaderBarComponent,
+        FooterBarComponent,
+        HomeComponent,
+        LoginFormComponent,
+        LoginModalComponent,
+        RegisterFormComponent,
+        RegisterModalComponent,
 
-    UpperFirstLetterPipe
-  ],
-  imports: [
-    BrowserModule,
-    RoutingModule,
-    SharedModule,
-    HeroModule,
-    ToastrModule.forRoot({
-      timeOut: 2000
-    })
-  ],
-  providers: [
-    AuthService,
-    DataService,
-    HeroService,
-    UserService,
-    { provide: ErrorHandler, useClass: AppErrorHandler },
-  ],
-  bootstrap: [AppComponent]
+        UpperFirstLetterPipe
+    ],
+    imports: [
+        BrowserModule,
+        RoutingModule,
+        SharedModule,
+        HeroModule,
+        ToastrModule.forRoot({
+            timeOut: 2000
+        })
+    ],
+    providers: [
+        AuthService,
+        DataService,
+        HeroService,
+        UserService,
+        {provide: ErrorHandler, useClass: AppErrorHandler},
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

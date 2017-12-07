@@ -12,24 +12,24 @@ import { SharedModule } from '../../shared/shared.module';
 import { LimitStringPipe } from '../../pipes/index';
 
 @NgModule({
-  imports: [
-    SharedModule,
-  ],
-  exports: [
-    HeroDashboardComponent,
-  ],
-  declarations: [
-    HeroDashboardComponent,
-    HeroItemComponent,
-    HeroListComponent,
-    HeroDetailComponent,
-    HeroAddModalComponent,
-    HeroAddModalComponent,
-    HeroUpdateComponent,
-    LimitStringPipe
-  ],
+    imports: [
+        SharedModule,
+    ],
+    exports: [
+        HeroDashboardComponent,
+    ],
+    declarations: [
+        HeroDashboardComponent,
+        HeroItemComponent,
+        HeroListComponent,
+        HeroDetailComponent,
+        HeroAddModalComponent,
+        HeroAddModalComponent,
+        HeroUpdateComponent,
+        LimitStringPipe
+    ],
 
-  providers: [LimitStringPipe]
+    providers: [LimitStringPipe]
 })
 
 export class HeroModule {
