@@ -42,9 +42,10 @@ function handlerError(res, err) {
             errorList = buildErrorListFromTypeError(err);
             break;
         default:
-            erorrList = [err];
+            errorList.push(err);
             break;
     }
+    console.log(errorList);
     let response = new ResponseModel({
         code: 404,
         status: 'failure',
@@ -82,7 +83,7 @@ function buildErrorListFromCastError(err) {
     
 }
 
-function buildErrorListFromTypeError() {
+function buildErrorListFromTypeError(err) {
     let errorList = [];
     let errorModel = new ErrorModel({
         code: ErrorMessage.TYPE_ERROR_HAS_OCCURRED,

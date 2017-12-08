@@ -40,10 +40,10 @@ export class HeroDetailComponent implements OnInit {
         let idDetailModal = '#detail_' + this.hero._id;
         let idUpdateModal = '#updateHeroModal_' + this.hero._id;
 
-        $(idDetailModal).modal('toggle');
-        setTimeout(function () {
-            console.log(idUpdateModal);
-            $(idUpdateModal).modal();
+        $(idDetailModal).modal('hide');
+
+        setTimeout(function() {
+            $(idUpdateModal).modal('toggle');
         }, 250);
     }
 

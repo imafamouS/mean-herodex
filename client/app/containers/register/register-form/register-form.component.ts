@@ -79,7 +79,9 @@ export class RegisterFormComponent implements OnInit {
         if (errors) {
             let message = [];
             for (let item of errors) {
-                message.push(item.message + '\n');
+                let msg = item.message || item.username;
+                msg += '\n';
+                message.push(msg);
             }
             this.toast.error('', message.toString());
         } else {

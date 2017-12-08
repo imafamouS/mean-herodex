@@ -77,9 +77,7 @@ export class HeroUpdateComponent implements OnInit {
 
         if (isSuccess) {
             this.toast.success(`Updated hero successfully`);
-            $('#updateHeroModal')
-            .modal('toggle');
-
+            $('#'+this.id).modal('hide');
             this.onUpdateHeroSuccessfully.emit(heroModel);
         }
     }
