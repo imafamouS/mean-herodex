@@ -87,6 +87,5 @@ export class HeroListComponent implements OnInit, OnChanges {
 
     private handlerGetHeroFailure() {
         this.toast.error('', 'Cannot get Heroes !');
-
     }
 }

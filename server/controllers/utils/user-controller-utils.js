@@ -11,6 +11,7 @@ const HandlerResponse = require('../../commons/response/handler-response');
 const ErrorMessage = require('../../commons/error-message');
 const DatabaseUtils = require('../../commons/database-utils');
 const TextUtils = require('../../commons/text-utils');
+const VerifyRequest = require('../../commons/verify-request');
 
 const UserModel = require('../../models/user.model');
 
@@ -79,27 +80,42 @@ function update(req, res) {
     
     delete req.body.username;
     let password;
-    TextUtils.hash(req.body.password)
-             .then(hash => {
-                 password = hash;
-                 let query = {_id: req.params.id};
-                 let update = {
-                     '$set': {
-                         'password': password, 'role': req.body.role,
-                     },
-                 };
-        
-                 UserModel.update(query, update, function(err, data) {
-                     if (err) {
+    VerifyRequest.verify(req)
+                 .then(user => {
+                    TextUtils
+                        .hash(req.body.password)
+                        .then(hash => {
+                            password = hash;
+                            let query = { _id: req.params.id };
+                            let update = {
+                                '$set': {
+                                    'password': password,
+                                    'role': req.body.role
+                                }
+                            };
+
+                            updateUser(query, update, res);
+                        })
+                        .catch(err => HandlerResponse.error(res, err));
+                 })
+                 .catch(error => {
+                    if (err.name === 'JsonWebTokenError') {
+                         HandlerResponse.unauthorized(res);
+                    } else {
                          HandlerResponse.error(res, err);
-                     } else {
-                         Logger.info(TAG + 'Update user successfully');
-                         HandlerResponse.success(res,
-                             {message: 'User updated successfully'});
-                     }
+                    }
                  });
-             })
-             .catch(err => HandlerResponse.error(res, err));
+}
+function updateUser(query, update, res){
+     UserModel.update(query, update, function(err, data) {
+        if (err) {
+            HandlerResponse.error(res, err);
+        } else {
+            Logger.info(TAG + 'Update user successfully');
+            HandlerResponse.success(res, { message: 'User updated successfully' });
+        }
+     });
+
 }
 
 function handlerWhenUserDoesNotExist(res) {
