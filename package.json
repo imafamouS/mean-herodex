@@ -4,7 +4,7 @@
         "license": "MIT",
         "scripts": {
                 "ng": "ng",
-                "start": "ng serve",
+                "start": "npm run start:dev",
                 "start:dev": "concurrently \"npm run start:database\" \"npm run start:server-dev\" \"npm run start:client\"",
                 "start:database": "mongod",
                 "start:server": "node index.js",
