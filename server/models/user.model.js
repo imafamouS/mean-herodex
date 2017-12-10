@@ -6,7 +6,7 @@ const Bcrypt = require('bcryptjs');
 const TextUtils = require('../commons/text-utils');
 const ErrorMessage = require('../commons/error-message');
 
-const UserValidation = require('../validations/user.validation.js');
+const UserValidation = require('../validations/user.validation');
 
 const UserSchema = new Mongoose.Schema({
     username: {
@@ -30,10 +30,12 @@ const UserSchema = new Mongoose.Schema({
     },
 });
 
+//Hàm được thực hiện trước khi thêm vào database 
 UserSchema.pre('save', function(next) {
     hashPassword(this, next);
 });
 
+//Hàm hash mật khẩu 
 function hashPassword(_user, next) {
     let user = _user;
     if (!user.isModified('password')) {
@@ -49,6 +51,7 @@ function hashPassword(_user, next) {
              });
 }
 
+//Hàm so sánh password đầu vào và password từ database 
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     Bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) {

@@ -16,6 +16,7 @@ function isOpen() {
     return isConnectionOpen(Config.database_client);
 }
 
+//Phương thức kiểm tra connection có đang được kết nối 
 function isConnectionOpen(client) {
     Logger.info(TAG + '[' + client + '] Check if conneciton is open');
     let _client = client || 'mongodb';

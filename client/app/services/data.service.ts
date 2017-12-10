@@ -15,24 +15,29 @@ export class DataService {
     constructor(private http: HttpClient) {
     }
 
+    //Phương thức thực hiện gửi get request
     public get(url: string, header?: HttpHeaders) {
+        console.log(url);
         let options = header || this.headerBuilder.getDefaultHeader();
         return this.http.get(url, {headers: options})
                    .catch(error => HandlerError.handler(error));
     }
 
+    //Phương thức thực hiện gửi post request
     public post(url: string, body?: any, header?: HttpHeaders) {
         let options = header || this.headerBuilder.getDefaultHeader();
         return this.http.post(url, body, {headers: options})
                    .catch(error => HandlerError.handler(error));
     }
 
+    //Phương thức thực hiện gửi put request
     public put(url: string, body: any, header?: HttpHeaders) {
         let options = header || this.headerBuilder.getDefaultHeader();
         return this.http.put(url, body, {headers: options})
                    .catch(error => HandlerError.handler(error));
     }
-
+    
+    //Phương thức thực hiện gửi delete request
     public delele(url: string, body: any, header?: HttpHeaders) {
         let options = header || this.headerBuilder.getDefaultHeader();
         let _id = body;

@@ -9,7 +9,7 @@
                                 <img #img
                                      class='image'
                                      [src]="hero.img"
-                                     (error)="useDefaultImage($event)"/>
+                                     (error)="onImgageError($event)"/>
                                 <div class='content'
                                      style="overflow-y: auto; color: black;">
                                     <h1>{{ hero.name }}</h1>

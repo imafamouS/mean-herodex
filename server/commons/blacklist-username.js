@@ -77,7 +77,8 @@ const list = [
     'view', 'void', 'vote', 'webmail', 'webmaster', 'website', 'widget',
     'widgets', 'wiki', 'wpad', 'write', 'www', 'www-data', 'www1', 'www2',
     'www3', 'www4', 'you', 'yourname', 'yourusername', 'zlib'];
-
+    
+//Kiểm tra xem username có nằm trong list username bị cấm 
 function validate(username) {
     Logger.info(TAG + 'Validate username');
     return list.indexOf(username) !== -1;

@@ -23,6 +23,7 @@ UserControllerUtils.update = update;
 
 module.exports = UserControllerUtils;
 
+//Hàm đăng nhập 
 function login(req, res) {
     Logger.info(TAG + 'Do Login...');
     
@@ -52,6 +53,7 @@ function login(req, res) {
     });
 }
 
+//Hàm đăng ký 
 function register(req, res) {
     Logger.info(TAG + 'Do Register');
     
@@ -75,6 +77,7 @@ function register(req, res) {
         });
 }
 
+//Hàm cập nhập user  
 function update(req, res) {
     Logger.info(TAG + 'Do update...');
     
@@ -106,6 +109,8 @@ function update(req, res) {
                     }
                  });
 }
+
+//Hàm thực hiện việc cập nhật hero trong database 
 function updateUser(query, update, res){
      UserModel.update(query, update, function(err, data) {
         if (err) {
@@ -118,6 +123,7 @@ function updateUser(query, update, res){
 
 }
 
+//Hàm xử lý khi user không tồn tại 
 function handlerWhenUserDoesNotExist(res) {
     Logger.info(TAG + 'User does not exists');
     
@@ -127,6 +133,7 @@ function handlerWhenUserDoesNotExist(res) {
     HandlerResponse.error(res, errorModel);
 }
 
+//Hàm xử lý khi đăng nhập thành công 
 function handlerWhenLoginSuccessful(res, user) {
     Logger.info(TAG + 'Login successful');
     
@@ -134,6 +141,7 @@ function handlerWhenLoginSuccessful(res, user) {
     HandlerResponse.success(res, {token: token});
 }
 
+//Hàm xử lý khi sai mật khẩu 
 function handlerWhenWrongPassword(res) {
     Logger.info(TAG + 'Wrong password');
     
@@ -148,6 +156,7 @@ function handlerWhenWrongPassword(res) {
        .json(response);
 }
 
+//Hàm xử lý khi user đã tồn tại 
 function handlerWhenUserAlreadyExist(res) {
     Logger.info(TAG + 'User exists');
     

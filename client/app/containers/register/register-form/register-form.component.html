@@ -4,6 +4,7 @@
 </div>
 <div class="alert alert-danger" *ngIf="password.touched && !password.valid &&password.errors.required">Password is required
 </div>
+
 <form class="form" role="form" [formGroup]="registerForm" (ngSubmit)="register()">
   <div class="form-group" [class.has-success]="username.valid" [class.has-danger]="!username.valid">
     <label for="username" class="form-control-label">Username</label>

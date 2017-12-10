@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +24,6 @@ export class RegisterFormComponent implements OnInit {
     username: FormControl;
     password: FormControl;
 
-
     constructor(private userService: UserService,
                 private formBuilder: FormBuilder,
                 private toast: ToastrService,
@@ -34,7 +34,9 @@ export class RegisterFormComponent implements OnInit {
         this.initForm();
     }
 
+    //Phương thức thực hiện việc gửi request đăng ký và xử lý kết quả 
     public register() {
+
         let userModel: UserModel = new UserModel({
             username: this.username.value,
             password: this.password.value,
@@ -49,6 +51,7 @@ export class RegisterFormComponent implements OnInit {
         this.registerForm.reset();
     }
 
+    //Phương thức khởi tạo reactive form 
     private initForm() {
         this.username = new FormControl('', [Validators.required, Validators.minLength(4)]);
         this.password = new FormControl('', [Validators.required]);
@@ -60,6 +63,7 @@ export class RegisterFormComponent implements OnInit {
         });
     }
 
+    //Phương thức xứ lý khi đăng ký thành công 
     private handlerRegisterSuccess(result) {
         let isSuccess = result.status === 'success';
         let message = result.data.message || result.message;
@@ -72,7 +76,8 @@ export class RegisterFormComponent implements OnInit {
             this.toast.error('', message || 'An error has occurred');
         }
     }
-
+    
+    //Phương thức xứ lý khi có lỗi 
     private handlerRegisterFail(err) {
         let jsonResponse = err.error;
         let errors = jsonResponse.errors;
@@ -88,5 +93,4 @@ export class RegisterFormComponent implements OnInit {
             this.toast.error('', 'An error has occurred');
         }
     }
-
 }

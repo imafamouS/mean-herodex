@@ -36,6 +36,7 @@ export class LoginFormComponent implements OnInit {
         });
     }
 
+    //Phương thức thực hiện việc gửi request đăng nhập và xử lý kết quả 
     public login() {
         let userModel = new UserModel({
             username: this.loginForm.get('username').value,
@@ -50,8 +51,8 @@ export class LoginFormComponent implements OnInit {
         this.loginForm.reset();
     }
 
+    //Phương thức duoc thực hiện khi đăng nhập thành công 
     private handlerLoginSuccessfully(isLoggedIn) {
-        console.log(isLoggedIn);
         if (isLoggedIn) {
             this.router.navigate(['/']);
             this.toast.success('', 'Login Successful');
@@ -61,6 +62,7 @@ export class LoginFormComponent implements OnInit {
         }
     }
 
+    //Phương thức duoc thực hiện khi có lỗi xảy ra 
     private handlerError(err) {
         let jsonResponse = err.error;
         let errors = jsonResponse.errors;
@@ -74,5 +76,4 @@ export class LoginFormComponent implements OnInit {
             this.toast.error('', 'Oops! An error has occurred');
         }
     }
-
 }

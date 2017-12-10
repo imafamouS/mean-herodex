@@ -15,7 +15,9 @@ export class HeroDashboardComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Dashboard');
     }
-
+    
+    //Phuong thuc duoc thuc hien khi da them moi thanh cong Hero
+    //newHero sẽ được thêm mảng các hero tại hero-list.component
     public onCreateHeroSuccessfully(heroModel) {
         this.newHero = heroModel;
     }

@@ -15,6 +15,7 @@ BaseControllerUtils.delete = _delete;
 
 module.exports = BaseControllerUtils;
 
+//Hàm lấy tất cả các document 
 function getAll(model, req, res) {
     handlerWhenCannotConnectDatabase(res);
     
@@ -37,6 +38,7 @@ function getAll(model, req, res) {
                  });
 }
 
+//Hàm lấy document theo I
 function getById(model, req, res) {
     
     handlerWhenCannotConnectDatabase(res);
@@ -61,6 +63,7 @@ function getById(model, req, res) {
                  });
 }
 
+//Hàm đếm số lượng document 
 function count(model, req, res) {
     
     handlerWhenCannotConnectDatabase(res);
@@ -78,6 +81,7 @@ function count(model, req, res) {
          });
 }
 
+//Hàm thêm document 
 function create(model, req, res) {
     
     handlerWhenCannotConnectDatabase(res);
@@ -102,6 +106,7 @@ function create(model, req, res) {
                  });
 }
 
+//Hàm cập nhật document 
 function update(model, req, res) {
     
     handlerWhenCannotConnectDatabase(res);
@@ -128,6 +133,7 @@ function update(model, req, res) {
                  });
 }
 
+//Hàm xóa document 
 function _delete(model, req, res) {
     
     handlerWhenCannotConnectDatabase(res);

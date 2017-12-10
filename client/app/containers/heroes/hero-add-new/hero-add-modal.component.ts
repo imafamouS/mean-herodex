@@ -38,12 +38,12 @@ export class HeroAddModalComponent implements OnInit {
         this.initForm();
     }
 
-
+    //Phuong thuc load anh mac dinh khi src cua tag <img> xay ra loi
     public onImgageError() {
-        let inputImg = this.heroForm.get('img').value;
         this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
     }
 
+    //Phuong thuc thuc hien gui requset them moi hero va xu ly ket qua
     public createHero() {
         let heroModel: HeroModel = this.buildHeroModel();
         if (!heroModel.name) {
@@ -62,6 +62,7 @@ export class HeroAddModalComponent implements OnInit {
         this.heroForm.reset();
     }
 
+    //Phuong thuc xu ly khi response mo ta viec tao hero thanh cong
     private handlerCreateHeroSuccessfully(result, heroModel) {
         let id = result.data._id;
         if (id) {
@@ -74,22 +75,25 @@ export class HeroAddModalComponent implements OnInit {
         }
     }
 
+    //Phuong thuc xuly khi response la loi
     private handlerCreateHeroFailure() {
         let message = 'Cannot create new Hero! Please try later';
 
         this.toast.error('', message);
     }
 
+    //Tao HeroModel tu thong tin form
     private buildHeroModel() {
         return new HeroModel({
             id: undefined,
             name: this.name.value,
-            universe: this.heroForm.get('universe').value === 1 ? 'DC Comics' : 'Marvel Comics',
+            universe: this.heroForm.get('universe').value == 1 ? 'DC Comics' : 'Marvel Comics',
             img: this.heroForm.get('img').value || 'assets/img/default-hero.jpg',
             story: this.heroForm.get('story').value
         });
     }
-
+    
+    //Tao reactive form Hero
     private initForm() {
         this.name = new FormControl('', [Validators.required]);
 

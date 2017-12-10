@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+//Pipe gioi han chuoi
 @Pipe({name: 'limitString'})
 export class LimitStringPipe implements PipeTransform {
     transform(value: string, limit: number) {

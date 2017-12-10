@@ -27,7 +27,7 @@ export class PaginationComponent implements OnInit {
     ngOnChanges() {
         this.getPages(this.offset, this.limit, this.size);
     }
-
+    //Phương thức được thực hiện khi có việc chọn trang 
     public selectPage(page: number, event) {
         this.cancelEvent(event);
         if (this.isValidPageNumber(page, this.totalPages)) {
@@ -35,10 +35,12 @@ export class PaginationComponent implements OnInit {
         }
     }
 
+    //Dừng sự kiện hiện tại 
     public cancelEvent(event) {
         event.preventDefault();
     }
 
+    //Tạo danh sách các trang
     private getPages(offset: number, limit: number, size: number) {
         this.currentPage = this.getCurrentPage(offset, limit);
         this.totalPages = this.getTotalPages(limit, size);
@@ -48,14 +50,17 @@ export class PaginationComponent implements OnInit {
                                .toArray();
     }
 
+    //Kiểm tra xem trang có hợp lệ 
     private isValidPageNumber(page: number, totalPages: number): boolean {
         return page > 0 && page <= totalPages;
     }
 
+    //Lấy trang hiện tại 
     private getCurrentPage(offset: number, limit: number): number {
         return Math.floor(offset / limit) + 1;
     }
-
+    
+    //Lấy tổng số trang 
     private getTotalPages(limit: number, size: number): number {
         return Math.ceil(Math.max(size, 1) / Math.max(limit, 1));
     }

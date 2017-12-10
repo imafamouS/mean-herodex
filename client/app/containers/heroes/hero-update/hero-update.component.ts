@@ -48,12 +48,12 @@ export class HeroUpdateComponent implements OnInit {
         this.id = "updateHeroModal_" + this.hero._id;
         this.initForm();
     }
-
+    //Phương thức load ảnh mặc định khi src thẻ <img> xảy ra lỗi 
     public onImgageError() {
-        let inputImg = this.heroForm.get('img').value;
         this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
     }
 
+    //Phương thức thực hiện việc gửi request cập nhật hero và xử lý kết quả 
     public updateHero() {
         let heroModel: HeroModel = this.buildHeroModel();
         if (!heroModel.name) {
@@ -62,16 +62,14 @@ export class HeroUpdateComponent implements OnInit {
         }
         this.heroService.update(heroModel)
             .subscribe(
-                result => {
-                    this.handlerUpdateHeroSuccessfully(result, heroModel)
-                },
-                error => {
-                    this.handlerUpdateHeroFailure()
-                });
+                result => this.handlerUpdateHeroSuccessfully(result, heroModel),
+                error => this.handlerUpdateHeroFailure()
+            );
 
         this.heroForm.reset();
     }
 
+    //Phương thức xử lý kết quả khi cập nhật thành công 
     private handlerUpdateHeroSuccessfully(result, heroModel) {
         let isSuccess = result.status === 'success';
 
@@ -82,12 +80,14 @@ export class HeroUpdateComponent implements OnInit {
         }
     }
 
+    //Phương thức xử lý lỗi khi cập nhật hero 
     private handlerUpdateHeroFailure() {
         let message = 'Cannot update Hero! Please try later';
 
         this.toast.error('', message);
     }
 
+    //Tao HeroModel tu form
     private buildHeroModel() {
         return new HeroModel({
             id: this.hero._id,
@@ -97,7 +97,8 @@ export class HeroUpdateComponent implements OnInit {
             story: this.heroForm.get('story').value
         });
     }
-
+    
+    //Khoi tao reactive form
     private initForm() {
         this.name = new FormControl(this.hero.name, [Validators.required]);
 

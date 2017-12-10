@@ -9,6 +9,7 @@ const MONGODB_URI = `mongodb://${Config.mongo.host}:${Config.mongo.port}/${Confi
 
 Mongoose.Promise = global.Promise;
 
+//Hàm kết nối database mongo 
 module.exports.connect = function() {
     Mongoose.connect(MONGODB_URI, {useMongoClient: true})
             .then(() => {

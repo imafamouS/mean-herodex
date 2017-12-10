@@ -16,7 +16,7 @@ HandlerResponse.unauthorized = handlerUnauthorized;
 HandlerResponse.canNotConnectDatabase = handlerCannotConnectionDatabase;
 
 module.exports = HandlerResponse;
-
+//Hàm xứ lý khi thành công (trả response 200)
 function handlerSuccess(res, data) {
     Logger.info(TAG + 'Handler Success');
     let response = new ResponseModel({
@@ -27,6 +27,7 @@ function handlerSuccess(res, data) {
        .json(response);
 }
 
+//Hàm xứ lý khi có lỗi (trả response 404)
 function handlerError(res, err) {
     Logger.info(TAG + 'Handler Error:' + err.name);
     let errorList = [];
@@ -45,7 +46,7 @@ function handlerError(res, err) {
             errorList.push(err);
             break;
     }
-    console.log(errorList);
+
     let response = new ResponseModel({
         code: 404,
         status: 'failure',
@@ -57,6 +58,7 @@ function handlerError(res, err) {
        .json(response);
 }
 
+//Hàm tạo danh sách lỗi từ lỗi Validation
 function buildErrorListFromValidationError(err) {
     let errorList = [];
     
@@ -70,6 +72,7 @@ function buildErrorListFromValidationError(err) {
     return errorList;
 }
 
+//Hàm tạo danh sách lỗi từ lỗi Cast 
 function buildErrorListFromCastError(err) {
     let errorList = [];
     
@@ -83,6 +86,7 @@ function buildErrorListFromCastError(err) {
     
 }
 
+//Hàm tạo danh sách lỗi từ lỗi Type 
 function buildErrorListFromTypeError(err) {
     let errorList = [];
     let errorModel = new ErrorModel({
@@ -93,7 +97,7 @@ function buildErrorListFromTypeError(err) {
     
     return errorList;
 }
-
+//Hàm xử lý khi request không được xác thực (trả response 401)
 function handlerUnauthorized(res) {
     Logger.info(TAG + 'Handler Auth');
     
@@ -109,6 +113,7 @@ function handlerUnauthorized(res) {
        .json(response);
 }
 
+//Hàm xử lý khi server không thể kết nối đến database (trả response 504)
 function handlerCannotConnectionDatabase(res) {
     Logger.info(TAG + 'Handler Connection database');
     

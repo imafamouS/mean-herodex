@@ -15,26 +15,27 @@ HeroController.update = BaseController.update;
 HeroController.delete = BaseController.delete;
 HeroController.getById = BaseController.getById;
 
-HeroController.create = createNewHero;
 HeroController.getHeroes = getHeroes;
 HeroController.search = search;
+HeroController.create = createNewHero;
 
 module.exports = HeroController;
-
+//Hàm lấy danh sách hero 
 function getHeroes(req, res) {
     Logger.info(TAG + 'Get Heroes...');
     
     HeroControllerUtils.getDataByAction(HeroControllerUtils.GET_HERO, req, res);
 }
-
+//Hàm lấy danh sách hero theo từ khóa 
 function search(req, res) {
     Logger.info(TAG + 'Search Heroes...');
     
     HeroControllerUtils.getDataByAction(HeroControllerUtils.SEARCH, req, res);
 }
 
+// Hàm tạo mới hero 
 function createNewHero(req, res) {
-    Logger.info(TAG + 'Search Heroes...');
+    Logger.info(TAG + 'Create Heroes...');
     
-    HeroControllerUtils.createHero(req, res);
+    HeroControllerUtils.create(req, res);
 }

@@ -31,10 +31,12 @@ export class HeroDetailComponent implements OnInit {
         this.id = "detail" + '_' + this.hero._id;
     }
 
-    public useDefaultImage(event) {
+    //Phương thức load ảnh mặc định khi src của tag <img> xảy ra lỗi 
+    public onImgageError(event) {
         this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
     }
 
+    //Phương thức hiện form update 
     public showModalUpdate() {
 
         let idDetailModal = '#detail_' + this.hero._id;
@@ -46,7 +48,8 @@ export class HeroDetailComponent implements OnInit {
             $(idUpdateModal).modal('toggle');
         }, 250);
     }
-
+    
+    //Phương thức chuyển hero mới cập nhật từ hero-update.component sang hero-item.component
     public updateHeroSuccessfully(hero) {
         this.onAfterUpdateHeroSuccessfully.emit(hero);
     }

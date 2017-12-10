@@ -35,6 +35,7 @@ export class AuthService implements OnInit {
 
     }
 
+    //Phuong thuc trung gian trong qua trinh gui va nhan request login
     public login(usernameAndPassword: UserModel) {
         return this.userService.login(usernameAndPassword)
                    .map(res => {
@@ -42,6 +43,7 @@ export class AuthService implements OnInit {
                    });
     }
 
+    //Phuong thuc dang xuat
     public logout() {
         this.isLoggedin = false;
         this.currentUser = new UserModel({
@@ -53,6 +55,8 @@ export class AuthService implements OnInit {
         this.router.navigate(['/']);
     }
 
+    //Phuong thuc trung gian khi dang nhap thanh cong
+    //Them token vao localStorage va cap nhat currentUser
     private handlerLoginSuccessfully(res) {
         if (res.status === 'success' && res.data) {
             let token = res.data.token;
@@ -71,15 +75,18 @@ export class AuthService implements OnInit {
         }
     }
 
+    //Cap nhat currentUser tu token
     private setCurrentUser(token: string) {
         let decodedUser = this.decodedUserFromToken(token);
         this.currentUser = this.parseToUserModel(decodedUser);
     }
 
+    //Giai ma user tu token
     private decodedUserFromToken(token: string) {
         return this.jwtHelper.decodeToken(token).user;
     }
 
+    //Tao UserModel tu user da duoc giai ma
     private parseToUserModel(decodedUser): UserModel {
         let username = decodedUser.username;
         let role = decodedUser.role;
@@ -94,7 +101,8 @@ export class AuthService implements OnInit {
 
         return user;
     }
-
+    
+    //Cap nhat trang thai user
     private updateStatusUser(user: UserModel) {
         user.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
     }

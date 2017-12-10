@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-
+//Lop tao headers cho http request
 export class HeaderBuilder {
 
     headerContent: any;

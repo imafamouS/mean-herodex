@@ -33,10 +33,9 @@ const evnObject = Joi.object({
     MONGO_PORT: Joi.number()
                    .default(27017),
     MONGO_DATABASE_NAME: Joi.string()
-                            .default('final_exam'),
-})
-                     .unknown()
-                     .required();
+                            .default('mean_herodex'),
+}).unknown()
+  .required();
 
 const {error, value: envVars} = Joi.validate(process.env, evnObject);
 if (error) {

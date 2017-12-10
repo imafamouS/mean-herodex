@@ -13,12 +13,13 @@ export class HeroService {
     constructor(private dataService: DataService) {
 
     }
-
+    //Phương thức lấy danh sách hero từ từ khóa 
     public searchHeroes(term: string) {
         let options = this.headerBuilder.getHeaderWithToken();
         return this.dataService.get(API.hero_url + '/search?name=' + term, options);
     }
 
+    //Phương thức lấy danh sách hero theo phân đoạn 
     public getHeroes(offset?: number, limit?: number) {
         let options = this.headerBuilder.getHeaderWithToken();
         let url: string;
@@ -30,6 +31,7 @@ export class HeroService {
         return this.dataService.get(url, options);
     }
 
+    //Phương thức lấy thông tin hero 
     public getDetailHero(hero) {
         let options = this.headerBuilder.getHeaderWithToken();
         let id = hero || hero._id;
@@ -37,18 +39,21 @@ export class HeroService {
         return this.dataService.get(API.hero_url + '/' + id, options);
     }
 
+    //Phương thức tạo mới hero 
     public create(hero: HeroModel) {
         let options = this.headerBuilder.getHeaderWithToken();
 
         return this.dataService.create(API.hero_url, JSON.stringify(hero), options);
     }
 
+    //Phương thức cập nhật hero 
     public update(hero: HeroModel) {
         let options = this.headerBuilder.getHeaderWithToken();
 
         return this.dataService.update(API.hero_url + '/' + hero._id, JSON.stringify(hero), options);
     }
-
+    
+    //Phương thức xóa hero 
     public delete(hero: HeroModel) {
         let options = this.headerBuilder.getHeaderWithToken();
         let id = hero._id;

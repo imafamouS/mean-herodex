@@ -5,7 +5,7 @@ import 'rxjs/add/observable/throw';
 
 import { AppError, BadInputError, NotFoundError, UnauthorizedError } from './error/index';
 import { JsonResponse } from '../models/index';
-
+//Ham xu ly loi khi nhan response tu phia Server
 export function handler(error: HttpErrorResponse) {
     let jsonResponse: JsonResponse = error.error;
     if (error.status === 400) {

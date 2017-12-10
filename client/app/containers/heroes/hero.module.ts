@@ -13,12 +13,15 @@ import { LimitStringPipe } from '../../pipes/index';
 
 @NgModule({
     imports: [
+        //Module duoc dung trong HeroModule
         SharedModule,
     ],
     exports: [
+         //Component se duoc cac module khac xu dung
         HeroDashboardComponent,
     ],
     declarations: [
+        //Cac component, pipe duoc xu dung trong HeroModule
         HeroDashboardComponent,
         HeroItemComponent,
         HeroListComponent,
@@ -28,7 +31,7 @@ import { LimitStringPipe } from '../../pipes/index';
         HeroUpdateComponent,
         LimitStringPipe
     ],
-
+    //Cac item se duoc tu dong khoi tao thong qua Dependency Injection
     providers: [LimitStringPipe]
 })
 

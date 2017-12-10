@@ -11,6 +11,7 @@ VerifyRequest.verifyWithToken = verifyWithToken;
 
 module.exports = VerifyRequest;
 
+//Hàm Xác định tính xác thực của request 
 function verify(req) {
     Logger.info(TAG);
     return verifyWithToken(req);

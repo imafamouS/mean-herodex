@@ -33,7 +33,7 @@ export class HeroItemComponent implements OnInit {
 
     ngOnInit() {
     }
-
+    //Phương thức thực việc gửi request xóa hero và xử lý kết quả 
     public deleteHero() {
         this.heroService.delete(this.hero)
             .subscribe(
@@ -46,14 +46,18 @@ export class HeroItemComponent implements OnInit {
                 });
     }
 
+    //Phương thức load ảnh mặc định khi src của tag <img> xảy ra lỗi 
     public useDefaultImage(event) {
         this.img.nativeElement.src = DEFAULT_IMAGE_HERO;
     }
 
+    //Phương thức thực hiện khi cập nhật hero thành công 
+    //Chuyển hero mới cập nhật sang hero-list.component
     public onAfterUpdateHeroSuccessfully(hero) {
         this.onNeedUpdateHero.emit(hero);
     }
-
+    
+    //Phương thức thuc hien viec mo Modal update hero
     public openDetailModal() {
         let idModal = "#detail_" + this.hero._id;
         $(idModal).modal();

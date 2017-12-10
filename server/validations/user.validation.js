@@ -13,6 +13,7 @@ UserValidation.role = roleValidate;
 
 module.exports = UserValidation;
 
+//Hàm kiểm tra username có hợp lệ 
 function usernameValidate(username) {
     if (BlackListUserName.validate(username)) {
         return false;
@@ -21,10 +22,12 @@ function usernameValidate(username) {
     return usernameRegex.test(username);
 }
 
+//Hàm kiểm tra password có hợp lệ
 function passwordValidate(password) {
     return passwordRegex.test(password);
 }
 
+//Hàm kiểm tra role user có hợp lệ
 function roleValidate(role) {
     return !(role !== 'admin' && role !== 'user');
 }

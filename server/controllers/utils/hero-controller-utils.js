@@ -1,4 +1,6 @@
 const TAG = 'HeroControllerUtils ';
+const GET_HERO = 'GET_HERO';
+const SEARCH = 'SEARCH';
 
 const Logger = require('../../logger');
 
@@ -10,13 +12,15 @@ const HeroModel = require('../../models/hero.model');
 
 const HeroControllerUtils = {};
 
-HeroControllerUtils.GET_HERO = 'GET_HERO';
-HeroControllerUtils.SEARCH = 'SEARCH';
+HeroControllerUtils.GET_HERO = GET_HERO;
+HeroControllerUtils.SEARCH = SEARCH;
 HeroControllerUtils.getDataByAction = getDataByAction;
-HeroControllerUtils.createHero = createHero;
+HeroControllerUtils.create = createHero;
 
 module.exports = HeroControllerUtils;
 
+//Hàm lấy danh sách hero theo action gồm
+//GET_HERO và SEARCH
 function getDataByAction(action, req, res) {
     Logger.info(TAG + action);
     
@@ -39,6 +43,7 @@ function getDataByAction(action, req, res) {
                  });
 }
 
+//Hàm thêm mới Hero
 function createHero(req, res) {
     Logger.info(TAG + 'Create_hero');
     
@@ -69,17 +74,19 @@ function createHero(req, res) {
                  });
 }
 
+//Hàm kiểm tra xem request có phải là request lấy danh sách hero theo phân đoạn 
 function shouldGetHeroByOffet(req) {
     return req.query.offset && req.query.limit;
 }
 
+//Hàm tạo query truy vấn theo action 
 function queryBuilder(action, req, user) {
     let query;
     switch (action) {
-        case 'GET_HERO':
+        case GET_HERO:
             query = buildQueryForGetHero(user);
             break;
-        case 'SEARCH':
+        case SEARCH:
             query = buildQueryForSearchHero(req, user);
             break;
         default:
@@ -89,10 +96,12 @@ function queryBuilder(action, req, user) {
     return query;
 }
 
+//Hàm tạo query truy vấn cho việc GET_HERO 
 function buildQueryForGetHero(user) {
     return {user_id: user._id};
 }
 
+//Hàm tạo query truy vấn cho việc SEARCH
 function buildQueryForSearchHero(req, user) {
     let query;
     
@@ -100,7 +109,7 @@ function buildQueryForSearchHero(req, user) {
     
     if (name.length > 0) {
         query = {
-            user_id: user._id, name: {$regex: '.*' + name + '.*'},
+            user_id: user._id, name: new RegExp(name, 'i'),
         };
     } else {
         query = {user_id: user._id};
@@ -109,7 +118,9 @@ function buildQueryForSearchHero(req, user) {
     return query;
 }
 
+//Hàm lấy danh sách hero theo query 
 function getHeroWithQuery(req, res, query) {
+
     if (shouldGetHeroByOffet(req)) {
         getHeroByOffset(req, res, query);
     } else {
@@ -117,6 +128,7 @@ function getHeroWithQuery(req, res, query) {
     }
 }
 
+//Hàm lấy danh sách hero theo phân đoạn 
 function getHeroByOffset(req, res, query) {
     Logger.info('Get Heroes BY OFFSET');
     
@@ -148,9 +160,10 @@ function getHeroByOffset(req, res, query) {
              });
 }
 
+//Hàm lấy danh sách hero
 function getAllHero(req, res, query) {
     Logger.info('Get all Heroes');
-    
+    console.log(query);
     HeroModel.find(query)
              .sort({date_created: -1})
              .then((heroes) => {
@@ -161,3 +174,4 @@ function getAllHero(req, res, query) {
                  HandlerResponse.error(res, err);
              });
 }
+

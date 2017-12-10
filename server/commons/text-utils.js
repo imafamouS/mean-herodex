@@ -11,10 +11,12 @@ TextUtils.hash = hash;
 
 module.exports = TextUtils;
 
+//Hàm kiểm tra chuỗi có rổng hay không 
 function isEmpty(str) {
     return str === null || str.length === 0 || str === undefined;
 }
 
+//Hàm hash chuỗi 
 function hash(str) {
     Logger.info(TAG + 'hash');
     return new Promise((resolve, reject) => {
