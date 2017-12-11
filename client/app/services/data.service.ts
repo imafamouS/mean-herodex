@@ -17,7 +17,6 @@ export class DataService {
 
     //Phương thức thực hiện gửi get request
     public get(url: string, header?: HttpHeaders) {
-        console.log(url);
         let options = header || this.headerBuilder.getDefaultHeader();
         return this.http.get(url, {headers: options})
                    .catch(error => HandlerError.handler(error));

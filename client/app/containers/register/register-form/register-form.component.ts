@@ -36,6 +36,13 @@ export class RegisterFormComponent implements OnInit {
 
     //Phương thức thực hiện việc gửi request đăng ký và xử lý kết quả 
     public register() {
+        let password = this.password.value;
+        let rePassword = this.registerForm.get('re_password').value;
+
+        if (password != rePassword) {
+            this.toast.error('', 'Password and Re-password did not match !');
+            return;
+        }
 
         let userModel: UserModel = new UserModel({
             username: this.username.value,
@@ -59,6 +66,7 @@ export class RegisterFormComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             username: this.username,
             password: this.password,
+            re_password: [],
             role: []
         });
     }

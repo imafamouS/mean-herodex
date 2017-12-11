@@ -9,7 +9,6 @@ const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'hero/dashboard', component: HeroDashboardComponent, canActivate: [AuthGuard]},
     {path: '**', redirectTo: 'home'}
-    //{ path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

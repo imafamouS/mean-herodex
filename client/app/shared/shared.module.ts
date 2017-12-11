@@ -10,14 +10,12 @@ import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     imports: [
-        BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
     ],
     exports: [
-        BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,

@@ -27,7 +27,10 @@ const UserSchema = new Mongoose.Schema({
         trim: true,
         default: 'user',
         validate: [UserValidation.role, ErrorMessage[105]],
-    },
+    }, date_created: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 //Hàm được thực hiện trước khi thêm vào database 

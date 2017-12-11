@@ -17,11 +17,11 @@ import { LimitStringPipe } from '../../pipes/index';
         SharedModule,
     ],
     exports: [
-         //Component se duoc cac module khac xu dung
+         //Component se duoc cac module khac su dung
         HeroDashboardComponent,
     ],
     declarations: [
-        //Cac component, pipe duoc xu dung trong HeroModule
+        //Cac component, pipe duoc su dung trong HeroModule
         HeroDashboardComponent,
         HeroItemComponent,
         HeroListComponent,
